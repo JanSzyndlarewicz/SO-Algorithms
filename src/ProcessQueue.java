@@ -19,11 +19,6 @@ public class ProcessQueue implements Serializable {
         return processArrayList;
     }
 
-    public void generateSimulation (int numberOfQueues){
-        for(int i=0; i<numberOfQueues; i++){
-            processArrayList.add(QueueLibrary.generateQueue(10, i));
-        }
-    }
 
 
 

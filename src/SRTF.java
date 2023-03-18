@@ -1,10 +1,13 @@
 import java.util.ArrayList;
 
-public class SRTF {
+public class SRTF implements Algorithm{
+
+    public SRTF() {}
 
     private static int realTime;
 
-    public static void doSRTF(ArrayList<Process> queueList){
+    @Override
+    public void doAlgorithm(ArrayList<Process> queueList){
         realTime = 0;
         int iterator = 0;
         Process currentProcess;
@@ -12,7 +15,7 @@ public class SRTF {
         do{
             currentProcess = findSmallest(queueList);
 
-            System.out.println("Test -> " + currentProcess);
+            //System.out.println("Test -> " + currentProcess);
 
             if(currentProcess != null){
                 currentProcess.setWaitingTime(realTime - currentProcess.getWaitingTime() - currentProcess.getFILLING_TIME());

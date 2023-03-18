@@ -1,9 +1,11 @@
 import java.util.ArrayList;
 
-public class FCFS {
+public class FCFS implements Algorithm{
+    public FCFS() {
+    }
 
-
-    public static void doFCFS(ArrayList<Process> queueList){
+    @Override
+    public void doAlgorithm(ArrayList<Process> queueList){
         int realTime = 0;
 
         for (Process currentProcess : queueList) {

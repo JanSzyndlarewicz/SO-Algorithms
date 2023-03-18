@@ -26,15 +26,20 @@ public class QueueLibrary {
         }
     }
 
-    public static void doFromFile(){
+    public static void doFromFile(Algorithm algorithm){
         ProcessQueue processQueue = new ProcessQueue(Serialization.deserialize().getProcessArrayList());
 
         for(int i=0; i<processQueue.getProcessArrayList().size(); i++){
-            FCFS.doFCFS(processQueue.getProcessArrayList().get(i));
+            algorithm.doAlgorithm(processQueue.getProcessArrayList().get(i));
             System.out.println("\n\n\nKolejka nr: " + i );
             printQueue(processQueue.getProcessArrayList().get(i));
         }
+    }
 
+    public static void generateSimulation (ProcessQueue processQueue, int numberOfQueues){
+        for(int i=0; i<numberOfQueues; i++){
+            processQueue.addArrayList(QueueLibrary.generateQueue(10, i));
+        }
     }
 }
 

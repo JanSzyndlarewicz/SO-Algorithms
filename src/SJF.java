@@ -1,8 +1,13 @@
 import java.util.ArrayList;
 
-public class SJF {
+public class SJF implements Algorithm{
+
     private static int realTime;
-    public static void doSJF(ArrayList<Process> queueList){
+
+    public SJF() {}
+
+    @Override
+    public void doAlgorithm(ArrayList<Process> queueList){
         realTime = 0;
         int iterator = 0;
         Process currentProcess;
