@@ -5,14 +5,17 @@ public class Main {
 
 
 
-        ArrayList<Process> queue = QueueLibrary.generateQueue(5, 1);
+        //ArrayList<Process> queue = QueueLibrary.generateQueue(5, 1);
         ProcessQueue processQueue = new ProcessQueue();
-        processQueue.addArrayList(queue);
+        processQueue.generateSimulation(10);
+        //processQueue.addArrayList(queue);
         Serialization.serialize(processQueue);
 
-        QueueLibrary.printQueue(queue);
-        SRTF.doSRTF(queue);
-        QueueLibrary.printQueue(queue);
+        QueueLibrary.doFromFile();
+
+        //QueueLibrary.printQueue(queue);
+        //SRTF.doSRTF(queue);
+        //QueueLibrary.printQueue(queue);
         //System.out.println(Serialization.deserialize().getProcessArrayList().get(0));
         //SJF.doSJF(queue);
         //QueueLibrary.printQueue(queue);

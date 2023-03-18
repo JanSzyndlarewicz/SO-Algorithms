@@ -2,6 +2,7 @@ import java.util.ArrayList;
 
 public class FCFS {
 
+
     public static void doFCFS(ArrayList<Process> queueList){
         int realTime = 0;
 

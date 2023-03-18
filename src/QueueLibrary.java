@@ -25,5 +25,16 @@ public class QueueLibrary {
             System.out.println(process);
         }
     }
+
+    public static void doFromFile(){
+        ProcessQueue processQueue = new ProcessQueue(Serialization.deserialize().getProcessArrayList());
+
+        for(int i=0; i<processQueue.getProcessArrayList().size(); i++){
+            FCFS.doFCFS(processQueue.getProcessArrayList().get(i));
+            System.out.println("\n\n\nKolejka nr: " + i );
+            printQueue(processQueue.getProcessArrayList().get(i));
+        }
+
+    }
 }
 

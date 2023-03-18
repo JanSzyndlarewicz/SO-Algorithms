@@ -7,6 +7,10 @@ public class ProcessQueue implements Serializable {
     public ProcessQueue(){
     }
 
+    public ProcessQueue(ArrayList<ArrayList<Process>> processArrayList){
+        this.processArrayList = processArrayList;
+    }
+
     public void addArrayList(ArrayList<Process> processArrayList){
         this.processArrayList.add(processArrayList);
     }
