@@ -5,10 +5,10 @@ public class Main {
 
 
         //ArrayList<Process> queue = QueueLibrary.generateQueue(5, 1);
-        ProcessQueue processQueue = new ProcessQueue();
-        QueueLibrary.generateSimulation(processQueue,20);
+        //ProcessQueue processQueue = new ProcessQueue();
+        //QueueLibrary.generateSimulation(processQueue,20);
         //processQueue.addArrayList(queue);
-        Serialization.serialize(processQueue);
+        //Serialization.serialize(processQueue);
         QueueLibrary.doAllFromFile();
 
 

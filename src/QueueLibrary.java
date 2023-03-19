@@ -2,6 +2,8 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class QueueLibrary {
+
+    // TODO
     public static ArrayList<Process> generateQueue(int lengthQueue, int queueId){
         Random random = new Random();
         ArrayList<Process> queue = new ArrayList<>();
@@ -31,7 +33,6 @@ public class QueueLibrary {
         ProcessQueue processQueue = new ProcessQueue(Serialization.deserialize().getProcessArrayList());
 
             algorithm.doAlgorithm(processQueue.getProcessArrayList().get(n));
-            //printQueue(processQueue.getProcessArrayList().get(i));
             printStatistics(processQueue.getProcessArrayList().get(n), algorithm);
     }
 
@@ -43,7 +44,8 @@ public class QueueLibrary {
         RR rr = new RR();
 
         for(int i=0; i<processQueue.getProcessArrayList().size(); i++){
-            System.out.println("\nKolejka nr: " + i );
+            System.out.println("\nKolejka nr: " + (i+1) );
+
             doOneFromFile(fcfs, i);
             doOneFromFile(sjf, i);
             doOneFromFile(srtf, i);
