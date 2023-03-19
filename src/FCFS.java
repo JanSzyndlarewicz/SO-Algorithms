@@ -15,8 +15,13 @@ public class FCFS implements Algorithm{
             currentProcess.setWaitingTime(realTime - currentProcess.getFILLING_TIME());
             currentProcess.setLengthLeft(0);
             realTime += currentProcess.getLENGTH();
-            currentProcess.setFinishTime(realTime);
+            currentProcess.setFinishTime(realTime-currentProcess.getFILLING_TIME());
         }
+    }
+
+    @Override
+    public String getAlgorithmName(){
+        return "FCFS";
     }
 
 }

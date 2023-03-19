@@ -3,6 +3,7 @@ import java.util.ArrayList;
 public class RR implements Algorithm{
     public RR(){};
 
+    @Override
     public void doAlgorithm(ArrayList<Process> queueList){
         int realTime = 0;
         int QUANTUM_TIME = 5;
@@ -34,7 +35,11 @@ public class RR implements Algorithm{
 
             if(iterator >= queueList.size()) iterator = 0;
 
-
         }
+    }
+
+    @Override
+    public String getAlgorithmName(){
+        return "RR";
     }
 }

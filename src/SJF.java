@@ -21,7 +21,7 @@ public class SJF implements Algorithm{
                 currentProcess.setWaitingTime(realTime - currentProcess.getFILLING_TIME());
                 currentProcess.setLengthLeft(0);
                 realTime += currentProcess.getLENGTH();
-                currentProcess.setFinishTime(realTime);
+                currentProcess.setFinishTime(realTime-currentProcess.getFILLING_TIME());
 
                 iterator++;
             }
@@ -31,6 +31,7 @@ public class SJF implements Algorithm{
         }while (iterator < queueList.size());
     }
 
+    // TODO
     public static Process findSmallest(ArrayList<Process> list){
         Process smallest = null;
         int realTimeBorder = 0;
@@ -44,5 +45,10 @@ public class SJF implements Algorithm{
         }
 
         return smallest;
+    }
+
+    @Override
+    public String getAlgorithmName(){
+        return "SJF";
     }
 }

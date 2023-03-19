@@ -26,13 +26,28 @@ public class QueueLibrary {
         }
     }
 
-    public static void doFromFile(Algorithm algorithm){
+
+    public static void doOneFromFile(Algorithm algorithm, int n){
         ProcessQueue processQueue = new ProcessQueue(Serialization.deserialize().getProcessArrayList());
 
+            algorithm.doAlgorithm(processQueue.getProcessArrayList().get(n));
+            //printQueue(processQueue.getProcessArrayList().get(i));
+            printStatistics(processQueue.getProcessArrayList().get(n), algorithm);
+    }
+
+    public static void doAllFromFile(){
+        ProcessQueue processQueue = new ProcessQueue(Serialization.deserialize().getProcessArrayList());
+        FCFS fcfs = new FCFS();
+        SJF sjf = new SJF();
+        SRTF srtf = new SRTF();
+        RR rr = new RR();
+
         for(int i=0; i<processQueue.getProcessArrayList().size(); i++){
-            algorithm.doAlgorithm(processQueue.getProcessArrayList().get(i));
-            System.out.println("\n\n\nKolejka nr: " + i );
-            printQueue(processQueue.getProcessArrayList().get(i));
+            System.out.println("\nKolejka nr: " + i );
+            doOneFromFile(fcfs, i);
+            doOneFromFile(sjf, i);
+            doOneFromFile(srtf, i);
+            doOneFromFile(rr, i);
         }
     }
 
@@ -40,6 +55,22 @@ public class QueueLibrary {
         for(int i=0; i<numberOfQueues; i++){
             processQueue.addArrayList(QueueLibrary.generateQueue(10, i));
         }
+    }
+
+    public static void printStatistics(ArrayList<Process> processQueue, Algorithm algorithm){
+        double avgLength = 0;
+        double avgTimeToFinish = 0;
+        final int NUMBER_OF_PROCESSES = processQueue.size();
+        for(Process process : processQueue){
+            avgLength += process.getLENGTH();
+            avgTimeToFinish += process.getFinishTime();
+        }
+
+        avgLength /= NUMBER_OF_PROCESSES;
+        avgTimeToFinish /= NUMBER_OF_PROCESSES;
+
+        System.out.println(algorithm.getAlgorithmName() + " -> " + "avg time: " + avgTimeToFinish + ", avg length: " + avgLength);
+
     }
 }
 
