@@ -3,7 +3,6 @@ import java.util.Random;
 
 public class QueueLibrary {
 
-    // TODO
     public static ArrayList<Process> generateQueue(int lengthQueue, int queueId){
         Random random = new Random();
         ArrayList<Process> queue = new ArrayList<>();
@@ -12,7 +11,7 @@ public class QueueLibrary {
             int length;
             int entryTime;
 
-            length = random.nextInt(1, 40);
+            length = (random.nextInt(0, 50) > queueId) ? random.nextInt(1, 40) : random.nextInt(30, 80);
 
             entryTime = (i<lengthQueue/4) ? 0 : random.nextInt(queue.get(queue.size()-1).getFILLING_TIME(), queue.get(queue.size()-1).getFILLING_TIME() + 30);
 
@@ -53,25 +52,35 @@ public class QueueLibrary {
         }
     }
 
-    public static void generateSimulation (ProcessQueue processQueue, int numberOfQueues){
+    public static void generateSimulation (ProcessQueue processQueue, int numberOfQueues, int queueLength){
         for(int i=0; i<numberOfQueues; i++){
-            processQueue.addArrayList(QueueLibrary.generateQueue(10, i));
+            processQueue.addArrayList(QueueLibrary.generateQueue(queueLength, i));
         }
     }
 
     public static void printStatistics(ArrayList<Process> processQueue, Algorithm algorithm){
         double avgLength = 0;
         double avgTimeToFinish = 0;
+        double avgWaitingTime = 0;
+        int longestWaiting = 0;
         final int NUMBER_OF_PROCESSES = processQueue.size();
+
         for(Process process : processQueue){
             avgLength += process.getLENGTH();
             avgTimeToFinish += process.getFinishTime();
+            avgWaitingTime += process.getWaitingTime();
+            longestWaiting  = Math.max(longestWaiting, process.getWaitingTime());
         }
 
         avgLength /= NUMBER_OF_PROCESSES;
         avgTimeToFinish /= NUMBER_OF_PROCESSES;
+        avgWaitingTime /= NUMBER_OF_PROCESSES;
 
-        System.out.println(algorithm.getAlgorithmName() + " -> " + "avg time: " + avgTimeToFinish + ", avg length: " + avgLength);
+        System.out.println(algorithm.getAlgorithmName() + " -> " +
+                "avg finishing time: " + avgTimeToFinish +
+                ", avg length: " + avgLength +
+                ", avg waiting time: " + avgWaitingTime +
+                ", longest waiting time: " + longestWaiting);
 
     }
 }

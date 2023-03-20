@@ -6,4 +6,5 @@ public interface Algorithm {
      default String getAlgorithmName() {
           return "Algorithm";
      }
+
 }

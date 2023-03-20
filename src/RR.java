@@ -6,7 +6,7 @@ public class RR implements Algorithm{
     @Override
     public void doAlgorithm(ArrayList<Process> queueList){
         int realTime = 0;
-        int QUANTUM_TIME = 5;
+        final int QUANTUM_TIME = 5;
         int counterOfFinishedProcesses = 0;
         int iterator = 0;
 
@@ -19,10 +19,13 @@ public class RR implements Algorithm{
                     realTime += currentProcess.getLengthLeft();
                     currentProcess.setLengthLeft(0);
                     currentProcess.setFinishTime(realTime-currentProcess.getFILLING_TIME());
+                    currentProcess.setWaitingTime(currentProcess.getWaitingTime()-currentProcess.getFILLING_TIME());
                     counterOfFinishedProcesses++;
                 }
                 else {
                     currentProcess.setLengthLeft(currentProcess.getLengthLeft()-QUANTUM_TIME);
+                    currentProcess.setWaitingTime(currentProcess.getWaitingTime()+realTime-currentProcess.getFinishTime());
+                    currentProcess.setFinishTime(realTime-currentProcess.getFILLING_TIME());
                     realTime += QUANTUM_TIME;
                 }
 

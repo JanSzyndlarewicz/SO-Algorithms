@@ -19,7 +19,4 @@ public class ProcessQueue implements Serializable {
         return processArrayList;
     }
 
-
-
-
 }
