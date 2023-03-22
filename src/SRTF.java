@@ -18,10 +18,21 @@ public class SRTF implements Algorithm{
             //System.out.println("Test -> " + currentProcess);
 
             if(currentProcess != null){
-                currentProcess.setWaitingTime(realTime - currentProcess.getWaitingTime() - currentProcess.getFILLING_TIME());
-                currentProcess.setLengthLeft(currentProcess.getLengthLeft()-1);
+
+                //if(currentProcess.getWaitingTime() == 0) currentProcess.setWaitingTime(-1*currentProcess.getFILLING_TIME());
+                currentProcess.setWaitingTime(realTime  + currentProcess.getWaitingTime() - currentProcess.getFinishTime());
                 realTime++;
-                currentProcess.setFinishTime(realTime-currentProcess.getFILLING_TIME());
+                currentProcess.setLengthLeft(currentProcess.getLengthLeft()-1);
+
+
+                if(currentProcess.getLengthLeft() == 0) {
+                    currentProcess.setWaitingTime(currentProcess.getWaitingTime()-currentProcess.getFILLING_TIME());
+                    currentProcess.setFinishTime(realTime-currentProcess.getFILLING_TIME());
+                }else {
+                    currentProcess.setFinishTime(realTime);
+                }
+
+
 
                 if(currentProcess.getLengthLeft()==0)
                     iterator++;
@@ -32,7 +43,6 @@ public class SRTF implements Algorithm{
         }while (iterator < queueList.size());
     }
 
-    // TODO
     public static Process findSmallest(ArrayList<Process> list){
         Process smallest = null;
         int realTimeBorder = 0;
@@ -47,6 +57,7 @@ public class SRTF implements Algorithm{
 
         return smallest;
     }
+
 
     @Override
     public String getAlgorithmName(){

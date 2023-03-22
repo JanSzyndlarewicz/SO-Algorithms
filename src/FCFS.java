@@ -12,10 +12,11 @@ public class FCFS implements Algorithm{
             if (realTime < currentProcess.getFILLING_TIME())
                 realTime = currentProcess.getFILLING_TIME();
 
-            currentProcess.setWaitingTime(realTime - currentProcess.getFILLING_TIME());
+
             currentProcess.setLengthLeft(0);
             realTime += currentProcess.getLENGTH();
             currentProcess.setFinishTime(realTime-currentProcess.getFILLING_TIME());
+            currentProcess.setWaitingTime(realTime - currentProcess.getFILLING_TIME());
         }
     }
 

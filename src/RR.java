@@ -6,7 +6,7 @@ public class RR implements Algorithm{
     @Override
     public void doAlgorithm(ArrayList<Process> queueList){
         int realTime = 0;
-        final int QUANTUM_TIME = 5;
+        final int QUANTUM_TIME = 10;
         int counterOfFinishedProcesses = 0;
         int iterator = 0;
 
@@ -16,17 +16,18 @@ public class RR implements Algorithm{
             if(currentProcess.getFILLING_TIME() <= realTime && currentProcess.getLengthLeft() != 0){
                 //System.out.println("Test -> " + currentProcess);
                 if(currentProcess.getLengthLeft()-QUANTUM_TIME <= 0){
-                    realTime += currentProcess.getLengthLeft();
                     currentProcess.setLengthLeft(0);
+                    realTime += currentProcess.getLengthLeft();
+                    currentProcess.setWaitingTime(currentProcess.getWaitingTime()+realTime-currentProcess.getFinishTime()-currentProcess.getFILLING_TIME());
                     currentProcess.setFinishTime(realTime-currentProcess.getFILLING_TIME());
-                    currentProcess.setWaitingTime(currentProcess.getWaitingTime()-currentProcess.getFILLING_TIME());
                     counterOfFinishedProcesses++;
                 }
                 else {
                     currentProcess.setLengthLeft(currentProcess.getLengthLeft()-QUANTUM_TIME);
                     currentProcess.setWaitingTime(currentProcess.getWaitingTime()+realTime-currentProcess.getFinishTime());
-                    currentProcess.setFinishTime(realTime-currentProcess.getFILLING_TIME());
                     realTime += QUANTUM_TIME;
+                    currentProcess.setFinishTime(realTime);
+
                 }
 
             }

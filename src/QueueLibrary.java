@@ -13,7 +13,7 @@ public class QueueLibrary {
 
             length = (random.nextInt(0, 50) > queueId) ? random.nextInt(1, 40) : random.nextInt(30, 80);
 
-            entryTime = (i<lengthQueue/4) ? 0 : random.nextInt(queue.get(queue.size()-1).getFILLING_TIME(), queue.get(queue.size()-1).getFILLING_TIME() + 30);
+            entryTime = (i<lengthQueue/4) ? 0 : random.nextInt(queue.get(queue.size()-1).getFILLING_TIME()+200, queue.get(queue.size()-1).getFILLING_TIME() + 1000);
 
             Process newProcess = new Process(length, entryTime);
             queue.add(newProcess);
@@ -81,7 +81,6 @@ public class QueueLibrary {
                 ", avg length: " + avgLength +
                 ", avg waiting time: " + avgWaitingTime +
                 ", longest waiting time: " + longestWaiting);
-
     }
 }
 

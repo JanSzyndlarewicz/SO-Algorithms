@@ -31,7 +31,7 @@ public class SJF implements Algorithm{
         }while (iterator < queueList.size());
     }
 
-    // TODO
+
     public static Process findSmallest(ArrayList<Process> list){
         Process smallest = null;
         int realTimeBorder = 0;
